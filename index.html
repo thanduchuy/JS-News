@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Site Metas -->
+    <title>Báo mới</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    
+    <!-- Design fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,500,700" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet"> 
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- FontAwesome Icons core CSS -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- Responsive styles for this template -->
+    <link href="css/responsive.css" rel="stylesheet">
+
+    <!-- Colors for this template -->
+    <link href="css/colors.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
+   
+    <script src="/controller/firebase.js"></script> 
+    <script src="/controller/index.js"></script>
+    <script src="/controller/layout.js"></script>
+</head>
+<body onload="loadPage()">
+
+    <!-- LOADER -->
+    <div id="preloader">
+        <img class="preloader" src="images/loader.gif" alt="">
+    </div><!-- end loader -->
+    <!-- END LOADER -->
+
+    <div id="wrapper">
+        <div class="collapse top-search" id="collapseExample">
+            <div class="card card-block">
+                <div class="newsletter-widget text-center">
+                    <form class="form-inline" name="form">
+                        <input name="search" type="text" class="form-control" placeholder="What you are looking for?">
+                        <button type="button" class="btn btn-primary" onclick="searchNews()"><i class="fa fa-search"></i></button>
+                    </form>
+                </div><!-- end newsletter -->
+            </div>
+        </div><!-- end top-search -->
+
+        <div class="topbar-section">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6 hidden-xs-down">
+                        <div class="topsocial">
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Youtube"><i class="fa fa-youtube"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Flickr"><i class="fa fa-flickr"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Instagram"><i class="fa fa-instagram"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus"></i></a>
+                        </div><!-- end social -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-4 hidden-md-down">
+                        <div class="topmenu text-center">
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><a href="page-regis.html" ><i class="fa fa-star"></i>Register</a></li>
+                                <li class="list-inline-item"><a href="#" onclick="onLogOutUser()" id="notLogin"><i class="fa fa-bolt"></i>LogOut</a></li>
+                                <li class="list-inline-item"><a href="page-login.html" id="logged"><i class="fa fa-user-circle-o"></i> <label id="nameUser">Login</label></a></li>
+                            </ul><!-- end ul -->
+                        </div><!-- end topmenu -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="topsearch text-right">
+                            <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i> Search</a>
+                        </div><!-- end search -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end header-logo -->
+        </div><!-- end topbar -->
+
+        <div class="header-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="logo">
+                            <a href="index.html"><img src="images/logo.png" alt=""></a>
+                        </div><!-- end logo -->
+                    </div>
+                </div><!-- end row -->
+            </div><!-- end header-logo -->
+        </div><!-- end header -->
+
+        <header class="header">
+            <div class="container">
+                <nav class="navbar navbar-inverse navbar-toggleable-md">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cloapediamenu" aria-controls="cloapediamenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-md-center" id="cloapediamenu">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link color-pink-hover" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item dropdown has-submenu menu-large hidden-md-down hidden-sm-down hidden-xs-down">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+                                <ul class="dropdown-menu megamenu" aria-labelledby="dropdown01">
+                                    <li>
+                                        <div class="mega-menu-content clearfix">
+                                            <div class="tab">
+                                                <button class="tablinks active" onclick="openCategory(event, 'cat01')">Beauty</button>
+                                                <button class="tablinks" onclick="openCategory(event, 'cat02')">Fashion</button>
+                                                <button class="tablinks" onclick="openCategory(event, 'cat03')">Travel</button>
+                                                <button class="tablinks" onclick="openCategory(event, 'cat04')">Architecture</button>
+                                                <button class="tablinks" onclick="openCategory(event, 'cat05')">Recipes</button>
+                                            </div>
+
+                                            <div class="tab-details clearfix">
+                                                <div id="cat01" class="tabcontent active">
+                                                    <div class="row" id="previewCategory">
+                                                    
+                                                    </div><!-- end row -->
+                                                </div>
+                                                <div id="cat02" class="tabcontent">
+                                                    <div class="row" id="cat2">
+                                                       
+                                                    </div><!-- end row -->
+                                                </div>
+                                                <div id="cat03" class="tabcontent">
+                                                    <div class="row" id="cat3">
+                                                        
+                                                    </div><!-- end row -->
+                                                </div>
+                                                <div id="cat04" class="tabcontent">
+                                                    <div class="row" id="cat4">
+                                                      
+                                                    </div><!-- end row -->
+                                                </div>
+                                                <div id="cat05" class="tabcontent">
+                                                    <div class="row" id="cat5">
+                                                    </div><!-- end row -->
+                                                </div>
+                                            </div><!-- end tab-details -->
+                                        </div><!-- end mega-menu-content -->
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link color-pink-hover" href="blog-category-01.html?category=Fashion">Fashion</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link color-red-hover" href="blog-category-01.html?category=Food">Food</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link color-aqua-hover" href="blog-category-01.html?category=Lifestyle">Lifestyle</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link color-green-hover" href="blog-category-01.html?category=Travel">Travel</a>
+                            </li>  
+                            <li class="nav-item">
+                                <a class="nav-link color-yellow-hover" href="blog-category-01.html?category=Vlogs"><i class="fa fa-play-circle-o"></i> Vlogs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link color-grey-hover" href="blog-category-01.html?category=Health">Health</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div><!-- end container -->
+        </header><!-- end header -->
+
+        <section class="section first-section">
+            <div class="container-fluid">
+                <div class="masonry-blog clearfix">
+                    <div class="left-side" id="left-side">
+                       <!-- end post-media -->
+                    </div><!-- end left-side -->
+
+                    <div class="center-side" id="center-side">
+                    
+                    </div><!-- end left-side -->
+
+                    <div class="right-side hidden-md-down" id="right-side">
+                       <!-- end post-media -->
+                    </div><!-- end right-side -->
+                </div><!-- end masonry -->
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="section-title">
+                            <h3 class="color-aqua"><a href="blog-category-01.html" title="">Lifestyle</a></h3>
+                        </div><!-- end title -->
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="lifeStyle">
+                            <!-- end blog-box -->
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="section-title">
+                            <h3 class="color-pink"><a href="blog-category-01.html" title="">Fashion</a></h3>
+                        </div><!-- end title -->
+                        <div class="row" id="fashion">
+                            <!-- end col -->
+                        </div><!-- end row -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+
+                <hr class="invis1">
+
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="blog-list clearfix" id="travel">
+                            <div class="section-title">
+                                <h3 class="color-green"><a href="blog-category-01.html" title="">Travel</a></h3>
+                            </div><!-- end title -->
+
+                          <!-- end blog-box -->
+                        </div><!-- end blog-list -->
+
+                        <hr class="invis">
+
+                        <div class="blog-list clearfix" id="food">
+                            <div class="section-title">
+                                <h3 class="color-red"><a href="blog-category-01.html" title="">Food</a></h3>
+                            </div><!-- end title -->
+
+                    
+                        </div><!-- end blog-list -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-3">
+                        <div class="section-title">
+                            <h3 class="color-yellow"><a href="blog-category-01.html" title="">Vlogs</a></h3>
+                        </div><!-- end title -->
+
+                        <div id="Vlogs">
+                        
+                        </div>
+
+ 
+
+                        <div class="section-title">
+                            <h3 class="color-grey"><a href="blog-category-01.html" title="">Health</a></h3>
+                        </div><!-- end title -->
+
+                       <div id="health"></div>
+
+                
+                    </div><!-- end col -->
+                </div><!-- end row -->
+
+                <hr class="invis1">
+
+              
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                        <div class="widget">
+                            <h2 class="widget-title">Recent Posts</h2>
+                            <div class="blog-list-widget">
+                                <div class="list-group" id="recent">
+                                
+                                </div>
+                            </div><!-- end blog-list -->
+                        </div><!-- end widget -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                        <div class="widget">
+                            <h2 class="widget-title">Popular Posts</h2>
+                            <div class="blog-list-widget">
+                                <div class="list-group" id="popular">
+                                </div>
+                            </div><!-- end blog-list -->
+                        </div><!-- end widget -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                        <div class="widget">
+                            <h2 class="widget-title">Popular Categories</h2>
+                            <div class="link-widget">
+                                <ul>
+                                    <li><a href="#">Fahsion <span>(21)</span></a></li>
+                                    <li><a href="#">Lifestyle <span>(15)</span></a></li>
+                                    <li><a href="#">Art & Design <span>(31)</span></a></li>
+                                    <li><a href="#">Health Beauty <span>(22)</span></a></li>
+                                    <li><a href="#">Clothing <span>(66)</span></a></li>
+                                    <li><a href="#">Entertaintment <span>(11)</span></a></li>
+                                    <li><a href="#">Food & Drink <span>(87)</span></a></li>
+                                </ul>
+                            </div><!-- end link-widget -->
+                        </div><!-- end widget -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+
+                <hr class="invis1">
+
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="widget">
+                            <div class="footer-text text-center">
+                                <a href="index.html"><img src="images/flogo.png" alt="" class="img-fluid"></a>
+                                <p>Cloapedia is a personal blog for handcrafted, cameramade photography content, fashion styles from independent creatives around the world.</p>
+                                <div class="social">
+                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a>              
+                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Instagram"><i class="fa fa-instagram"></i></a>
+                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Google Plus"><i class="fa fa-google-plus"></i></a>
+                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest"></i></a>
+                                </div>
+
+                                <hr class="invis">
+
+                                <div class="newsletter-widget text-center">
+                                    <form class="form-inline">
+                                        <input type="text" class="form-control" placeholder="Enter your email address">
+                                        <button type="submit" class="btn btn-primary">Subscribe <i class="fa fa-envelope-open-o"></i></button>
+                                    </form>
+                                </div><!-- end newsletter -->
+                            </div><!-- end footer-text -->
+                        </div><!-- end widget -->
+                    </div><!-- end col -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <br>
+                        <div class="copyright">&copy; Cloapedia. Design: <a href="http://html.design">HTML Design</a>.</div>
+                    </div>
+                </div>
+            </div><!-- end container -->
+        </footer><!-- end footer -->
+
+        <div class="dmtop">Scroll to Top</div>
+        
+    </div><!-- end wrapper -->
+
+    <!-- Core JavaScript
+    ================================================== -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+
+</body>
+</html>
